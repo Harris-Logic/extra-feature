@@ -578,7 +578,20 @@ class Instance(object):
         self.features["file_read"] = \
             self.report.get("behavior", {}).get("summary", {})\
             .get("file_read",[])
-        print(self.features["file_read"])
+#        print(self.features["file_read"])
+        
+        
+        import re
+        file_names = ["a.csv", "b.doc", "c.pptx", "d.doc", "e.csv", "f.csv"]
+        file_name_suffixs = ["csv", "doc"]
+        for file_name_suffix in file_name_suffixs:
+            for file_name in file_names:
+                pattern = ".+\." + file_name_suffix + "$"
+                if re.match(pattern, file_name) is not None:
+                    x = []          #一个新的盒子
+                    x.append(file_name)
+                    
+        
         self.features["files_read"] = len(self.features["file_read"])
         #print(self.features["files_read"])
         self.features["file_written"] = \
